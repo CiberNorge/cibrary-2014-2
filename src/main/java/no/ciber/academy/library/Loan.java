@@ -14,6 +14,7 @@ public class Loan {
     private LocalDateTime timeOfCheckout;
     private LocalDateTime timeOfCheckin;
 
+    
     public BookLoaner getBookLoaner() {
         return bookLoaner;
     }
