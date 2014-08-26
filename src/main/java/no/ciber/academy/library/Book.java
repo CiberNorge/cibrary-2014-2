@@ -1,17 +1,15 @@
 package no.ciber.academy.library;
-import org.joda.time.LocalDate;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by alegis on 25/08/14.
  *
- * TODO: This is not complete. The fields for a book needs to be decided
- *
- * This class is meant to work as a definition of what a book is and to determine the name, author etc of a book.
- * Since a book can have more than one instance.
+ * TODO: This is by no means complete. What fields are needed, for instance?
  */
 public class Book {
 
@@ -20,56 +18,36 @@ public class Book {
     private long Id;
 
 
-    private String bookName;
-    private String author;
-    private LocalDate releaseDate;
-    private String webLink;
-    private long ISBN;
-    //TODO: Field for which office owns the book?
+    private Book book;
+
+    private BookInfo bookInfo;
+    private List<Loan> bookLoans = new ArrayList<Loan>();
 
     public Book(){
 
     }
 
-    public String getAuthor() {
-        return author;
+    public Book getBook() {
+        return book;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setBook(Book book) {
+        this.book = book;
     }
 
-    public LocalDate getReleaseDate() {
-        return releaseDate;
+    public BookInfo getBookInfo() {
+        return bookInfo;
     }
 
-    public void setReleaseDate(LocalDate releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setBookInfo(BookInfo bookInfo) {
+        this.bookInfo = bookInfo;
     }
 
-    public String getWebLink() {
-        return webLink;
+    public List<Loan> getBookLoans() {
+        return bookLoans;
     }
 
-    public void setWebLink(String webLink) {
-        this.webLink = webLink;
+    public void setBookLoans(List<Loan> bookLoans) {
+        this.bookLoans = bookLoans;
     }
-
-
-    public long getISBN() {
-        return ISBN;
-    }
-
-    public void setISBN(long ISBN) {
-        this.ISBN = ISBN;
-    }
-
-    public String getBookName() {
-        return bookName;
-    }
-
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
-    }
-
 }

@@ -9,7 +9,7 @@ import javax.persistence.Id;
  *
  * TODO: This is not complete. The class is meant to be a definiton of what a person loaning a book is.
  */
-public class BookLoaner {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

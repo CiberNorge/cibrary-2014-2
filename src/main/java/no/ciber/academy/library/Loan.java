@@ -16,26 +16,26 @@ public class Loan {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
 
-    private BookLoaner bookLoaner;
-    private BookInstance bookInstance;
+    private User user;
+    private Book book;
     private LocalDateTime timeOfCheckout;
     private LocalDateTime timeOfCheckin;
 
 
-    public BookLoaner getBookLoaner() {
-        return bookLoaner;
+    public User getUser() {
+        return user;
     }
 
-    public void setBookLoaner(BookLoaner bookLoaner) {
-        this.bookLoaner = bookLoaner;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public BookInstance getBookInstance() {
-        return bookInstance;
+    public Book getBook() {
+        return book;
     }
 
-    public void setBookInstance(BookInstance bookInstance) {
-        this.bookInstance = bookInstance;
+    public void setBook(Book book) {
+        this.book = book;
     }
 
     public LocalDateTime getTimeOfCheckout() {
