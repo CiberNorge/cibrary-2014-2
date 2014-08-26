@@ -13,9 +13,23 @@
           action="#" method="post" role="form"
           class="form-horizontal">
 
-        <div>
+        <div style="width: 150px">
             <label for="title">Title</label>
             <input type="text" th:field="*{title}" />
+            <label for="title">Author</label>
+            <input type="text" th:field="*{author}" />
+            <label for="title">Publication date</label>
+            <input type="text" th:field="*{publicationDate}" />
+            <label for="title">URL</label>
+            <input type="text" th:field="*{URL}" />
+            <label for="title">ISBN</label>
+            <input type="text" th:field="*{ISBN}" />
+            <label for="title">URL for image</label>
+            <input type="text" th:field="*{imageURL}" />
+            <label for="title">Edition</label>
+            <input type="text" th:field="*{edition}" />
+            <label for="title">Description</label>
+            <input type="text" th:field="*{description}" />
         </div>
         <div class="form-actions pull-right">
             <input type="submit" class="btn btn-primary" value="Create"/>
