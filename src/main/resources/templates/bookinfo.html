@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-</head>
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
 <body>
-<div>
-    <a href="" th:href="@{/books/list}">Show books</a> <!--Will hit requestMapping("/books/list") -->
-</div>
 
-<div>
+    <div layout:fragment="header" class="page-header">
+      <div class="container">
+        <h1>Cibrary &mdash; Add Book</h1>
+      </div>
+    </div>
+
+<div layout:fragment="content">
     <form id="bookForm" th:action="@{/books/save}" th:object="${bookInfo}"
           action="#" method="post" role="form"
           class="form-horizontal">

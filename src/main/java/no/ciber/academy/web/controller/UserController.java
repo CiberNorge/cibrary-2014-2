@@ -37,6 +37,7 @@ public class UserController {
 		}
 		User anonymizedUser = new User();
 		anonymizedUser.setName(loggedUser.getName());
+		anonymizedUser.setIsAdmin(loggedUser.getIsAdmin());
 		session.setAttribute("user", anonymizedUser);
 		return "redirect:/";
 	}
