@@ -1,12 +1,19 @@
 package no.ciber.academy.library;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import org.joda.time.LocalDateTime;
 
 /**
  * Created by alegis on 25/08/14.
+ *
+ * TODO: This is not complete. This is a definition of what a loan is.
  */
 public class Loan {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
 
     private BookLoaner bookLoaner;
@@ -14,7 +21,7 @@ public class Loan {
     private LocalDateTime timeOfCheckout;
     private LocalDateTime timeOfCheckin;
 
-    
+
     public BookLoaner getBookLoaner() {
         return bookLoaner;
     }

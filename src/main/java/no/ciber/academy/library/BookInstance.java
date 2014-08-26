@@ -1,14 +1,22 @@
 package no.ciber.academy.library;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by alegis on 25/08/14.
+ *
+ * TODO: This is by no means complete. What fields are needed, for instance?
  */
 public class BookInstance {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
+
 
     private BookInstance bookInstance;
 
