@@ -3,6 +3,9 @@ package no.ciber.academy.library;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import no.ciber.academy.model.User;
+
 import org.joda.time.LocalDateTime;
 
 /**
