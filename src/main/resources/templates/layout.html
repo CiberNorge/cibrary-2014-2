@@ -43,8 +43,8 @@
                             <span class="glyphicon glyphicon-book"></span> Books
                         </a>
                         <ul class="dropdown-menu">
-                            <li th:if="${session.user.isAdmin}"><a href="form.html" th:href="@{/books/addbooks}">Add</a></li>
-                            <li><a href="form.html" th:href="@{/books/addbooks}">List</a></li>
+                            <li th:if="${session.user.isAdmin}"><a href="form.html" th:href="@{/books/addbook}">Add</a></li>
+                            <li><a href="form.html" th:href="@{/books/addbook}">List</a></li>
                         </ul>
                     </li>
                 </ul>
