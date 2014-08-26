@@ -8,7 +8,6 @@ import javax.persistence.Index;
 import org.springframework.context.annotation.Scope;
 
 @Entity
-@Scope("session")
 public class User {
 	@Id @GeneratedValue
 	private long id;
@@ -16,6 +15,8 @@ public class User {
 	private String name;
 	
 	private String password;
+	
+	private boolean isAdmin;
 	
 	public User() { }
 	
@@ -39,5 +40,13 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 }
