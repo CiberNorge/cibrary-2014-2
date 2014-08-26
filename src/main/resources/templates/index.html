@@ -4,21 +4,65 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="/css/cibrary.css"/>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
 </head>
 <body>
-<div>
-    <div id="header">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Cibrary &mdash; Java 2</a>
+        </div>
+        <div th:if="${session.user == null}" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right" role="form" method="post" th:action="@{/user/}" th:object="${user}">
+            <div class="form-group">
+              <input type="text" th:field="*{name}" placeholder="Username" class="form-control" />
+            </div>
+            <div class="form-group">
+              <input type="password" th:field="*{password}" placeholder="Password" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+            <button type="submit" name="register" class="btn">Register</button>
+          </form>
+        </div>
+        <div th:if="${session.user != null}">
+          <span th:text="${session.user.name}"></span>
+          <form class="navbar-form navbar-right" role="form" method="post" th:action="@{/user/logout}">
+            <button type="submit" class="btn btn-danger">Sign out</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
         <h1>Cibrary</h1>
+        <p>Welcome to Ciber Academy 2014. Cibrary rules!</p>
+      </div>
     </div>
 
-    <div id="body">
-        <h3>Welcome to Ciber Academy 2014. Cibrary rules!</h3>
+    <div th:if="${message != null}" class="alert alert-success" role="alert" th:text="${message}">
+    </div>
+
+    <div th:if="${error != null}" class="alert alert-danger" role="alert" th:text="${error}">
+    </div>
+
+    <div class="container" id="body">
     </div>
 
 
-    <div id="footer">
+    <footer id="footer">
         <span>Copyright &copy; 2014 <a href="http://www.ciber.com" target="_blank">Ciber</a>. All Rights Reserved</span>
-    </div>
-</div>
+    </footer>
 </body>
 </html>

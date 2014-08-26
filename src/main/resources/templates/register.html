@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="/css/cibrary.css"/>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Cibrary &mdash; Java 2</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Cibrary &mdash; Register User</h1>
+      </div>
+    </div>
+
+    <div th:if="${message != null}" class="alert alert-success" role="alert" th:text="${message}">
+    </div>
+
+    <div th:if="${error != null}" class="alert alert-danger" role="alert" th:text="${error}">
+    </div>
+
+    <div class="container" id="body">
+    	<form th:action="@{/user/signup}" role="form" method="post" th:object="${user}">
+    	<p><label for="name">Name</label> <input type="text" th:field="*{name}" /></p>
+    	<p><label for="password">Password</label> <input type="password" th:field="*{password}"/> <label for="repeat" type="password">repeat password</label><input type="password" name="repeat"/></p>
+        <p><button type="submit" class="btn btn-success">Register</button></p>
+    	</form>
+    </div>
+
+
+    <footer id="footer">
+        <span>Copyright &copy; 2014 <a href="http://www.ciber.com" target="_blank">Ciber</a>. All Rights Reserved</span>
+    </footer>
+</body>
+</html>
