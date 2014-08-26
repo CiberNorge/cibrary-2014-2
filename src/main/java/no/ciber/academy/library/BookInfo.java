@@ -18,7 +18,7 @@ public class BookInfo {
     private String author;
     private LocalDate publicationDate;
     private String URL;
-    private long ISBN;
+    private String ISBN;
     private String imageURL;
     private String edition;
     private String description;
