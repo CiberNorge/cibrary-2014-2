@@ -26,8 +26,8 @@
             <div class="form-group">
               <input type="password" th:field="*{password}" placeholder="Password" class="form-control" />
             </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-            <button type="submit" name="register" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok-circle"></span> Sign in</button>
+            <button type="submit" name="register" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> Register</button>
           </form>
         </div>
         <div th:if="${session.user != null}">
@@ -45,7 +45,7 @@
         </div>
         <div th:if="${session.user != null}">
 	       <form class="navbar-form navbar-right" role="form" method="post" th:action="@{/user/logout}">
-            <button type="submit" class="btn btn-danger">Sign out</button>
+            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-ban-circle"></span> Sign out</button>
           </form>
 			 <ul class="nav navbar-nav navbar-right">
 	            <li><a th:href="@{/user/profile}"><span class="glyphicon glyphicon-user"></span> <span th:text="${session.user.name}">User</span></a></li>
@@ -84,7 +84,7 @@
 	  <div class="input-group">
 	      <input type="search" class="form-control" placeholder="Search books..." />
 	      <span class="input-group-btn">
-	        <button class="btn btn-primary" type="button">Search</button>
+	        <button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search"></span> Search</button>
 	      </span>
 	      </div>
 	    </div><!-- /input-group -->
