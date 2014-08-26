@@ -8,8 +8,6 @@ import javax.persistence.Id;
 /**
  * Created by alegis on 25/08/14.
  *
- * TODO: This is not complete. The fields for a book needs to be decided
- *
  * This class is meant to work as a definition of what a book is and to determine the name, author etc of a book.
  * Since a book can have more than one instance.
  */
@@ -20,15 +18,25 @@ public class BookInfo {
     private long Id;
 
 
-    private String bookName;
+    private String title;
     private String author;
-    private LocalDate releaseDate;
-    private String webLink;
+    private LocalDate publicationDate;
+    private String URL;
     private long ISBN;
-    //TODO: Field for which office owns the book?
+    private String imageURL;
+    private String edition;
+    private String description;
 
     public BookInfo(){
 
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getAuthor() {
@@ -39,22 +47,21 @@ public class BookInfo {
         this.author = author;
     }
 
-    public LocalDate getReleaseDate() {
-        return releaseDate;
+    public LocalDate getPublicationDate() {
+        return publicationDate;
     }
 
-    public void setReleaseDate(LocalDate releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setPublicationDate(LocalDate publicationDate) {
+        this.publicationDate = publicationDate;
     }
 
-    public String getWebLink() {
-        return webLink;
+    public String getURL() {
+        return URL;
     }
 
-    public void setWebLink(String webLink) {
-        this.webLink = webLink;
+    public void setURL(String URL) {
+        this.URL = URL;
     }
-
 
     public long getISBN() {
         return ISBN;
@@ -64,12 +71,30 @@ public class BookInfo {
         this.ISBN = ISBN;
     }
 
-    public String getBookName() {
-        return bookName;
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
+
+    public String getEdition() {
+        return edition;
+    }
+
+    public void setEdition(String edition) {
+        this.edition = edition;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
 
 }
