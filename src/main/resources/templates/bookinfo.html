@@ -5,7 +5,8 @@
 
 <body>
 <div>
-    <a href="" th:href="@{/books/list}">Show books</a> <!--Will hit requestMapping("/books/list") -->
+    <a href="" th:href="@{/}">HOME</a> <!--Will hit requestMapping("/books/list") -->
+    <br></br>
 </div>
 
 <div>
@@ -32,7 +33,7 @@
             <input type="text" th:field="*{description}" />
         </div>
         <div class="form-actions pull-right">
-            <input type="submit" class="btn btn-primary" value="Create"/>
+            <input type="submit" class="btn btn-primary" value="Add book to the Cibrary"/>
         </div>
     </form>
 </div>
