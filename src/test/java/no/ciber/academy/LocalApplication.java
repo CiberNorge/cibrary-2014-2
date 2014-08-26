@@ -20,8 +20,8 @@ public class LocalApplication {
     public static void main(String[] args) throws SQLException {
         SpringApplication.run(LocalApplication.class, args);
         Server.createWebServer("-webPort", "8081").start();
-    }
 
+    }
 
     @Bean
     public DataSource dataSource() throws URISyntaxException {

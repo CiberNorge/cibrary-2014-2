@@ -19,7 +19,7 @@ but the actual directory is immaterial)
  is `<pathToProject>\build.gradle`.
 
 #### Run the application
-* Locate the class `LocalApplication` in the project view (`cibrary-2014\src\test\java\no\ciber\academy\LocalApplication`)
+* Locate the class `LocalApplication` in the project view (´cibrary-2014\src\test\java\no\ciber\academy\LocalApplication´)
 * Right click the class in the project view and select `Run/Debug LocalApplication....main()`.
 * When the Console says 'Started LocalApplication in ....' open a browser and go to url [http://localhost:8080/](http://localhost:8080/)
 * You're supposed to see some text.
