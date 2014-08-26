@@ -9,7 +9,6 @@ import java.util.List;
 /**
  * Created by alegis on 25/08/14.
  *
- * TODO: This is by no means complete. What fields are needed, for instance?
  */
 public class Book {
 
@@ -17,22 +16,14 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
 
-
-    private Book book;
-
     private BookInfo bookInfo;
-    private List<Loan> bookLoans = new ArrayList<Loan>();
 
     public Book(){
 
     }
 
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
+    public Book(BookInfo bookInfo){
+        this.bookInfo = bookInfo;
     }
 
     public BookInfo getBookInfo() {
@@ -43,11 +34,5 @@ public class Book {
         this.bookInfo = bookInfo;
     }
 
-    public List<Loan> getBookLoans() {
-        return bookLoans;
-    }
 
-    public void setBookLoans(List<Loan> bookLoans) {
-        this.bookLoans = bookLoans;
-    }
 }
