@@ -26,7 +26,7 @@ public class UserController {
 	//@Inject
 	//User user;
 	
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping("/")
 	public String login_register(HttpSession session, Model model, @ModelAttribute("user") User user, @RequestParam(required=false, value="register") String register) {
 		if (register != null)
 			return "register";
@@ -39,14 +39,18 @@ public class UserController {
 		anonymizedUser.setName(loggedUser.getName());
 		anonymizedUser.setIsAdmin(loggedUser.getIsAdmin());
 		session.setAttribute("user", anonymizedUser);
-		return "redirect:/";
+		return "redirect:/user/profile";
 	}
 	
-	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	@RequestMapping("/signup")
 	@Transactional
 	public String signup(HttpSession session, Model model, @ModelAttribute("user") User user, @RequestParam("repeat") String repeat, RedirectAttributes redirect) {
 		if (!user.getPassword().equals(repeat)) {
 			model.addAttribute("error", "The entered passwords do not match!");
+			return "register";
+		}
+		if (user.getPassword().length() < 3) {
+			model.addAttribute("error", "The entered password is too simple!");
 			return "register";
 		}
 		if (repository.findByName(user.getName()) != null) {
@@ -58,10 +62,15 @@ public class UserController {
 		return login_register(session, model, user, null);
 	}
 	
-	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	@RequestMapping("/logout")
 	public String logout(HttpSession session, Model model) {
 		session.removeAttribute("user");
 		model.addAttribute("user", new User());
-		return "index";
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/profile", method=RequestMethod.GET)
+	public String profile() {
+		return "userprofile";
 	}
 }

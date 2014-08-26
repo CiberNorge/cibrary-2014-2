@@ -9,7 +9,6 @@ input.field-error, textarea.field-error {
 .page-header::before {
 	position: absolute;
 	content:"";
-	opacity: 0.3;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -18,12 +17,16 @@ input.field-error, textarea.field-error {
 	background: url('/images/nerds.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
-	opacity: 0.3;
+	opacity: 0.2;
 }
-.jumbotron::before {
+
+.jumbotron {
+	opacity: 0.9;
+}
+
+.jumbotron::after {
 	position: absolute;
 	content:"";
-	opacity: 0.3;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -32,5 +35,5 @@ input.field-error, textarea.field-error {
 	background: url('/images/nerds.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
-	opacity: 0.3;
+	opacity: 0.5;
 }

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<body>
+    <div layout:fragment="loginform"></div>
+    
+    <div layout:fragment="header" class="page-header">
+      <div class="container">
+        <h1>Cibrary &mdash; User Profile <span th:text="${session.user.name}"></span></h1>
+        <h2 th:if="${session.user.isAdmin}">Administrator</h2>
+      </div>
+    </div>
+
+    <div layout:fragment="content" class="container" id="body">
+    </div>
+
+</body>
+</html>
