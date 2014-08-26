@@ -14,3 +14,4 @@
 **.project
 **.settings
 *.h2.db
+*.lock.db
