@@ -1,6 +1,8 @@
 package no.ciber.academy.web.controller;
 
 import no.ciber.academy.library.BookInfo;
+import no.ciber.academy.repository.BookInfoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class BookController {
 
+    @Autowired
+    private BookInfoRepository bookInfoRepository;
 
     @RequestMapping("/addbook")
     public String addBook(Model bookModel){
@@ -19,7 +23,7 @@ public class BookController {
 
     @RequestMapping("/save")
     public String save(BookInfo newBook, Model bookModel){
-
+        bookInfoRepository.save(newBook);
         bookModel.addAttribute("bookInfo", newBook);
 
         return "bookinfo";
