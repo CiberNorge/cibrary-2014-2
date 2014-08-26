@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value = "/user", method= RequestMethod.POST)
@@ -37,12 +38,12 @@ public class UserController {
 		User anonymizedUser = new User();
 		anonymizedUser.setName(loggedUser.getName());
 		session.setAttribute("user", anonymizedUser);
-		return "index";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	@Transactional
-	public String signup(HttpSession session, Model model, @ModelAttribute("user") User user, @RequestParam("repeat") String repeat) {
+	public String signup(HttpSession session, Model model, @ModelAttribute("user") User user, @RequestParam("repeat") String repeat, RedirectAttributes redirect) {
 		if (!user.getPassword().equals(repeat)) {
 			model.addAttribute("error", "The entered passwords do not match!");
 			return "register";
@@ -51,8 +52,8 @@ public class UserController {
 			model.addAttribute("error", "User name already in use!");
 			return "register";
 		}
-		model.addAttribute("message", "Welcome " + user.getName() +"!");
-		repository.save(user);
+		redirect.addFlashAttribute("message", "Welcome " + user.getName() +"!");
+		user = repository.save(user);
 		return login_register(session, model, user, null);
 	}
 	
