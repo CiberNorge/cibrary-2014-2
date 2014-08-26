@@ -1,6 +1,7 @@
 package no.ciber.academy;
 
 import org.h2.jdbcx.JdbcDataSource;
+import org.h2.tools.Server;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -17,9 +18,9 @@ import java.sql.SQLException;
 public class LocalApplication {
 
     public static void main(String[] args) throws SQLException {
-
         SpringApplication.run(LocalApplication.class, args);
-        org.h2.tools.Server.createWebServer("-webPort", "8081").start();
+        Server.createWebServer("-webPort", "8081").start();
+
     }
 
     @Bean
