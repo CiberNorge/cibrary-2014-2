@@ -5,12 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/**
- * Created by alegis on 25/08/14.
- *
- * This class is meant to work as a definition of what a book is and to determine the name, author etc of a book.
- * Since a book can have more than one instance.
- */
 public class BookInfo {
 
     @Id

@@ -6,10 +6,7 @@ import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by alegis on 25/08/14.
- *
- */
+
 public class Book {
 
     @Id
