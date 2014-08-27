@@ -1,5 +1,6 @@
 package no.ciber.academy.model;
 import org.joda.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +17,7 @@ public class BookInfo {
 
     private String title;
     private String author;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate publicationDate;
     private String URL;
     private String ISBN;

@@ -1,18 +1,16 @@
 <!DOCTYPE html>
-<html>
-<head>
-
-</head>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
 <body>
-<a href="" th:href="@{/}">HOME</a>
 
-    <tr th:each="bookInfo : ${listOfBooks}">
-        <td th:text="${bookInfo.ISBN}"></td>
-        <td th:text="${bookInfo.title}"></td>
-        <td th:text="${bookInfo.author}"></td>
-        <td th:text="${bookInfo.publicationDate}"></td>
-
-    </tr>
-
+    <div layout:fragment="content">
+        <tr class="table" th:each="bookInfo : ${listOfBooks}">
+            <td th:text="${bookInfo.ISBN}"></td>
+            <td th:text="${bookInfo.title}"></td>
+            <td th:text="${bookInfo.author}"></td>
+            <td th:text="${bookInfo.publicationDate}"></td>
+        </tr>
+    </div>
 </body>
 </html>
