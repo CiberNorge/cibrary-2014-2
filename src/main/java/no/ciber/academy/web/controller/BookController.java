@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RequestMapping("/books")
 @Controller
 public class BookController {
@@ -29,7 +32,14 @@ public class BookController {
         return "bookinfo";
     }
 
-    //TODO: Add books
+    @RequestMapping("/list")
+    public String list(Model listOfBooksModel){
+
+        listOfBooksModel.addAttribute("listOfBooks", bookInfoRepository.findAll());
+
+        return "list";
+    }
+
     //TODO: Delete books
 
 
