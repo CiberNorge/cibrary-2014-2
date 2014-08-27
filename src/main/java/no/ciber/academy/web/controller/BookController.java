@@ -39,6 +39,7 @@ public class BookController {
 
     @RequestMapping("/save")
     public String save(BookInfo newBook, Model bookModel){
+    	newBook.getCopies().add(new Book());
         newBook = bookInfoRepository.save(newBook);
         bookModel.addAttribute("bookInfo", newBook);
 
