@@ -28,7 +28,7 @@
 <form th:if="${session.user != null}" th:action="@{/books/action}" th:object="${bookInfo}"
           action="#" method="post" role="form">
             <input name="loan" type="submit" class="btn btn-success" value="Loan book"/>
-		    <input th:if="${session.user.isAdmin}" name="edit" type="submit" class="btn btn-primary" value="Edit book"/>
+		    <input th:if="${session.user.isAdmin}" name="edit" type="submit" class="btn btn-info" value="Edit book"/>
     </form>
 </div>
 </div>
