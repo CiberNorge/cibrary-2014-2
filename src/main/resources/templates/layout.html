@@ -82,10 +82,13 @@
 	  </div>
 	  <div class="panel-body">
 	  <div class="input-group">
-	      <input type="search" class="form-control" placeholder="Search books..." />
+          <form id="searchForm" th:action="@{/search}"
+                action="#" method="post" role="form">
+	      <input id="searchParameter" name="searchParameter" type="search" class="form-control" placeholder="Search books..." />
 	      <span class="input-group-btn">
-	        <button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search"></span> Search</button>
+	        <span class="glyphicon glyphicon-search"><input class="btn btn-primary" type="submit" value="Search" /></span>
 	      </span>
+          </form>
 	      </div>
 	    </div><!-- /input-group -->
     </div>

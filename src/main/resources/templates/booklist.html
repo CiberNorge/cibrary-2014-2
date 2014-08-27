@@ -14,14 +14,15 @@
 <div layout:fragment="content">
 <table class="table table-striped">
 <thead>
-<tr><th>ISBN</th><th>Title</th><th>Author</th><th>Date of publication</th><th></th></tr>
+<tr><th>ISBN</th><th>Title</th><th>Author</th><th>Date of publication</th><th>Edition</th></tr>
 </thead>
 <tbody>
     <tr th:each="bookInfo : ${listOfBooks}">
         <td th:text="${bookInfo.ISBN}"></td>
-        <td><a th:href="@{/books/info/} + ${bookInfo.Id}"><span th:text="${bookInfo.title}"></span></a></td>
+        <td><a th:href="@{/books/info/} + ${bookInfo.id}"><span th:text="${bookInfo.title}"></span></a></td>
         <td th:text="${bookInfo.author}"></td>
         <td th:text="${bookInfo.publicationDate}"></td>
+        <td th:text="${bookInfo.edition}"></td>
         <td th:if="${session.user != null}"><button class="btn btn-success">Loan book</button></td>
     </tr>
 </tbody>
