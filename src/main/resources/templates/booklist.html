@@ -3,14 +3,20 @@
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       layout:decorator="layout">
 <body>
-
-    <div layout:fragment="content">
-        <tr class="table" th:each="bookInfo : ${listOfBooks}">
-            <td th:text="${bookInfo.ISBN}"></td>
-            <td th:text="${bookInfo.title}"></td>
-            <td th:text="${bookInfo.author}"></td>
-            <td th:text="${bookInfo.publicationDate}"></td>
-        </tr>
-    </div>
+<a href="" th:href="@{/}">HOME</a>
+<table>
+<thead>
+<tr><th>ISBN</th><th>Title</th><th>Author</th><th>Date of publication</th><th></th></tr>
+</thead>
+<tbody>
+    <tr th:each="bookInfo : ${listOfBooks}">
+        <td th:text="${bookInfo.ISBN}"></td>
+        <td><a th:href="@{/books/info/} + ${bookInfo.Id}"><span th:text="${bookInfo.title}"></span></a></td>
+        <td th:text="${bookInfo.author}"></td>
+        <td th:text="${bookInfo.publicationDate}"></td>
+        <td th:if="${session.user != null}"><button class="btn btn-success">Loan book</button></td>
+    </tr>
+</tbody>
+</table>
 </body>
 </html>

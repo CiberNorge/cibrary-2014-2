@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class BookInfo {
@@ -23,6 +24,7 @@ public class BookInfo {
     private String ISBN;
     private String imageURL;
     private String edition;
+    @Lob
     private String description;
 
     public BookInfo(){
@@ -92,6 +94,14 @@ public class BookInfo {
     public void setDescription(String description) {
         this.description = description;
     }
+
+	public long getId() {
+		return Id;
+	}
+
+	public void setId(long id) {
+		Id = id;
+	}
 
 
 

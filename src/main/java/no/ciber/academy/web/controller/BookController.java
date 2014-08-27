@@ -6,7 +6,11 @@ import no.ciber.academy.model.repository.BookInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +31,10 @@ public class BookController {
 
     @RequestMapping("/save")
     public String save(BookInfo newBook, Model bookModel){
-        bookInfoRepository.save(newBook);
+        newBook = bookInfoRepository.save(newBook);
         bookModel.addAttribute("bookInfo", newBook);
 
-        return "bookadd";
+        return "redirect:/books/info/" + newBook.getId();
     }
 
     @RequestMapping("/list")
@@ -39,6 +43,17 @@ public class BookController {
         listOfBooksModel.addAttribute("listOfBooks", bookInfoRepository.findAll());
 
         return "booklist";
+    }
+    
+    @RequestMapping(value = "/info/{id}", method=RequestMethod.GET)
+    public String info(Model model, @PathVariable("id") long id, RedirectAttributes redirect) {
+    	BookInfo bookInfo = bookInfoRepository.findOne(id);
+    	if (bookInfo == null) {
+    		redirect.addFlashAttribute("error", "Book not found!");
+    		return "redirect:/books/list";
+    	}
+    	model.addAttribute("bookInfo", bookInfo);
+    	return "bookinfo";
     }
 
     //TODO: Delete books
