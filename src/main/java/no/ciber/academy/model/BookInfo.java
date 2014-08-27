@@ -1,4 +1,4 @@
-package no.ciber.academy.library;
+package no.ciber.academy.model;
 import org.joda.time.LocalDate;
 
 import javax.persistence.Entity;

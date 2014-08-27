@@ -1,7 +1,8 @@
 package no.ciber.academy.web.controller;
 
-import no.ciber.academy.library.BookInfo;
-import no.ciber.academy.repository.BookInfoRepository;
+import no.ciber.academy.model.BookInfo;
+import no.ciber.academy.model.repository.BookInfoRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +22,7 @@ public class BookController {
     public String addBook(Model bookModel){
         bookModel.addAttribute("bookInfo", new BookInfo());
 
-        return "bookinfo";
+        return "bookadd";
     }
 
     @RequestMapping("/save")
@@ -29,7 +30,7 @@ public class BookController {
         bookInfoRepository.save(newBook);
         bookModel.addAttribute("bookInfo", newBook);
 
-        return "bookinfo";
+        return "bookadd";
     }
 
     @RequestMapping("/list")
@@ -37,7 +38,7 @@ public class BookController {
 
         listOfBooksModel.addAttribute("listOfBooks", bookInfoRepository.findAll());
 
-        return "list";
+        return "booklist";
     }
 
     //TODO: Delete books

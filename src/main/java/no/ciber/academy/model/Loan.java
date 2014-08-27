@@ -1,10 +1,8 @@
-package no.ciber.academy.library;
+package no.ciber.academy.model;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import no.ciber.academy.model.User;
 
 import org.joda.time.LocalDateTime;
 

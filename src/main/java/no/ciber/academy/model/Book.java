@@ -1,4 +1,4 @@
-package no.ciber.academy.library;
+package no.ciber.academy.model;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

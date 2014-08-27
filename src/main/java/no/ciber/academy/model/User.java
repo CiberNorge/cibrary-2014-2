@@ -7,7 +7,7 @@ import javax.persistence.Index;
 
 import org.springframework.context.annotation.Scope;
 
-@Entity
+@Entity(name="UserTable")
 public class User {
 	@Id @GeneratedValue
 	private long id;
