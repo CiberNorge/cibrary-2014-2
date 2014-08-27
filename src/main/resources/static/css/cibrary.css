@@ -24,6 +24,7 @@ input.field-error, textarea.field-error {
 	opacity: 0.9;
 }
 
+.page-header::before {
 .jumbotron::after {
 	position: absolute;
 	content:"";
