@@ -3,8 +3,16 @@
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       layout:decorator="layout">
 <body>
-<a href="" th:href="@{/}">HOME</a>
-<table>
+
+    <div layout:fragment="header" class="page-header">
+      <div class="container">
+        <h1>Cibrary &mdash; Book List</h1>
+      </div>
+    </div>
+
+
+<div layout:fragment="content">
+<table class="table table-striped">
 <thead>
 <tr><th>ISBN</th><th>Title</th><th>Author</th><th>Date of publication</th><th></th></tr>
 </thead>
@@ -18,5 +26,6 @@
     </tr>
 </tbody>
 </table>
+</div>
 </body>
 </html>
