@@ -14,6 +14,12 @@
 <div class="row">
 <div class="col-md-4">
 <img class="img-responsive img-thumbnail" th:src="${bookInfo.imageURL}" />
+<hr />
+<form th:if="${session.user != null}" th:action="@{/books/action}" th:object="${bookInfo}"
+          action="#" method="post" role="form">
+            <input name="loan" type="submit" class="btn btn-success" value="Loan book"/>
+		    <input th:if="${session.user.isAdmin}" name="edit" type="submit" class="btn btn-info" value="Edit book"/>
+    </form>
 </div>
 <div class="col-md-8">
 <dl class="dl-horizontal">
@@ -22,14 +28,10 @@
 <dt>Publication date</dt><dd th:text="${bookInfo.publicationDate}"></dd>
 <dt>ISBN</dt><dd th:text="${bookInfo.ISBN}"></dd>
 <dt>Edition</dt><dd th:text="${bookInfo.edition}"></dd>
-<dt>Description</dt><dd th:text="${bookInfo.description}"></dd>
+<dt>Description</dt><dd></dd>
 </dl>
+<p th:text="${bookInfo.description}"></p>
 <p><a th:href="${bookInfo.URL}">More information</a></p>
-<form th:if="${session.user != null}" th:action="@{/books/action}" th:object="${bookInfo}"
-          action="#" method="post" role="form">
-            <input name="loan" type="submit" class="btn btn-success" value="Loan book"/>
-		    <input th:if="${session.user.isAdmin}" name="edit" type="submit" class="btn btn-info" value="Edit book"/>
-    </form>
 </div>
 </div>
 </div>

@@ -1,12 +1,19 @@
 package no.ciber.academy.model;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.eclipse.jetty.server.session.HashSessionIdManager;
 import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class BookInfo {
@@ -26,6 +33,9 @@ public class BookInfo {
     private String edition;
     @Lob
     private String description;
+    
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<Book> copies = new HashSet<Book>();
 
     public BookInfo(){
 
@@ -101,6 +111,14 @@ public class BookInfo {
 
 	public void setId(long id) {
 		Id = id;
+	}
+
+	public Set<Book> getCopies() {
+		return copies;
+	}
+
+	public void setCopies(Set<Book> copies) {
+		this.copies = copies;
 	}
 
 
