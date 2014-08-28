@@ -14,14 +14,13 @@
 <div layout:fragment="content">
 <table class="table">
 <thead>
-<tr class="active"><th>ISBN</th><th>Title</th><th>Author</th><th>Date of publication</th><th>Edition</th><th></th></tr>
+<tr class="active"><th>Title</th><th>Author</th><th>Available copies</th><th>Edition</th><th>Picture</th><th></th></tr>
 </thead>
 <tbody>
     <tr class="active" th:each="bookInfo : ${listOfBooks}">
-        <td th:text="${bookInfo.ISBN}"></td>
         <td><a th:href="@{/books/info/} + ${bookInfo.id}"><span th:text="${bookInfo.title}"></span></a></td>
         <td th:text="${bookInfo.author}"></td>
-        <td th:text="${bookInfo.publicationDate}"></td>
+        <td th:text="${bookInfo.available.size()}"></td>
         <td th:text="${bookInfo.edition}"></td>
         <td th:if="${session.user != null}">
         <form th:if="${session.user != null &amp;&amp; !bookInfo.available.isEmpty()}" th:action="@{/loans/loan}"
