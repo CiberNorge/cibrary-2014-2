@@ -4,6 +4,7 @@ import no.ciber.academy.model.Book;
 import no.ciber.academy.model.BookInfo;
 import no.ciber.academy.model.User;
 import no.ciber.academy.model.repository.BookInfoRepository;
+import no.ciber.academy.model.repository.BookRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,9 @@ public class BookController {
 
     @Autowired
     private BookInfoRepository bookInfoRepository;
+    
+    @Autowired
+    private BookRepository bookRepository;
 	
 	@Autowired
 	private LoanController loanController;
@@ -55,9 +59,10 @@ public class BookController {
     @RequestMapping("/addcopy")
     public String addCopy(Model model, @ModelAttribute("book") BookInfo bookInfo, RedirectAttributes redirect) {
     	Book newCopy = new Book();
+    	newCopy.setBookInfo(bookInfo);
+    	newCopy = bookRepository.save(newCopy);
     	bookInfo.getCopies().add(newCopy);
     	bookInfo.getAvailable().add(newCopy);
-    	newCopy.setBookInfo(bookInfo);
     	bookInfo = bookInfoRepository.save(bookInfo);
     	model.addAttribute("bookInfo", bookInfo);
         redirect.addFlashAttribute("message", "Another copy of your book has been added.");

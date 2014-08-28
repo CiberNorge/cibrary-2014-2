@@ -32,7 +32,7 @@ public class BookInfo {
     @Lob
     private String description;
     
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn (name = "copies")
     private Set<Book> copies = new HashSet<Book>();
     

@@ -27,7 +27,7 @@
 		<td class="col-xs-2">
 	        <form th:action="@{/loans/return}"
 	          action="#" method="post" role="form">
-	          	<input type="hidden" name="book" th:value="${book.Id}" />
+	          	<input type="hidden" id="book" name="book" th:value="${book.Id}" />
 		        <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-open"></span> Return book</button>
 		    </form>
 		</td>

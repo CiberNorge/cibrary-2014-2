@@ -14,6 +14,7 @@ import no.ciber.academy.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -29,7 +30,7 @@ public class LoanController {
 
 	@Transactional
 	@RequestMapping("/loan")
-	public String loan(Model model, BookInfo bookInfo, RedirectAttributes redirect, HttpSession session) {
+	public String loan(Model model, @ModelAttribute("bookInfo") BookInfo bookInfo, RedirectAttributes redirect, HttpSession session) {
 		try {
 			Iterator<Book> iterator = bookInfo.getAvailable().iterator();
 			Book book = iterator.next();
@@ -50,9 +51,14 @@ public class LoanController {
 	@Transactional
 	@RequestMapping("/return")
 	public String returnBook(Model model, Book book, RedirectAttributes redirect, HttpSession session) {
-		User user = (User) session.getAttribute("user");
-		user.getLoans().remove(book);
-		book.getBookInfo().getAvailable().add(book);
+		try {
+			User user = (User) session.getAttribute("user");
+			user.getLoans().remove(book);
+			book.getBookInfo().getAvailable().add(book);
+		} catch (Exception e) {
+			redirect.addFlashAttribute("error", "Book disappeared while returning.");
+			return "redirect:/user/mybooks";
+		}
 		redirect.addFlashAttribute("message", "You successfully returned the book.");
     	return "redirect:/user/mybooks";
 	}
