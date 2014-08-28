@@ -1,8 +1,13 @@
 package no.ciber.academy.web.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
+import no.ciber.academy.model.Book;
+import no.ciber.academy.model.BookInfo;
 import no.ciber.academy.model.User;
 import no.ciber.academy.model.repository.UserRepository;
 
@@ -27,19 +32,16 @@ public class UserController {
 	//User user;
 	
 	@RequestMapping("/")
-	public String login_register(HttpSession session, Model model, @ModelAttribute("user") User user, @RequestParam(required=false, value="register") String register) {
+	public String login_register(HttpSession session, Model model, @ModelAttribute("user") User user, @RequestParam(required=false, value="register") String register, RedirectAttributes redirect) {
 		if (register != null)
 			return "register";
 		User loggedUser = repository.findByName(user.getName());
 		if (loggedUser == null || !loggedUser.getPassword().equals(user.getPassword())) {
-			model.addAttribute("error", "Username or password incorrect!");
-			return "index";
+			redirect.addFlashAttribute("error", "Username or password incorrect!");
+			return "redirect:/";
 		}
-		User anonymizedUser = new User();
-		anonymizedUser.setName(loggedUser.getName());
-		anonymizedUser.setIsAdmin(loggedUser.getIsAdmin());
-		session.setAttribute("user", anonymizedUser);
-		return "redirect:/user/profile";
+		session.setAttribute("user", loggedUser);
+		return "redirect:/user/mybooks";
 	}
 	
 	@RequestMapping("/signup")
@@ -59,7 +61,7 @@ public class UserController {
 		}
 		redirect.addFlashAttribute("message", "Welcome " + user.getName() +"!");
 		user = repository.save(user);
-		return login_register(session, model, user, null);
+		return login_register(session, model, user, null, redirect);
 	}
 	
 	@RequestMapping("/logout")
@@ -72,5 +74,13 @@ public class UserController {
 	@RequestMapping(value = "/profile", method=RequestMethod.GET)
 	public String profile() {
 		return "userprofile";
+	}
+	
+	@RequestMapping(value = "/mybooks", method=RequestMethod.GET)
+	@Transactional
+	public String mybooks(Model model, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		model.addAttribute("listOfBooks", user.getLoans());
+		return "mybooks";
 	}
 }

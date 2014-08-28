@@ -24,11 +24,11 @@
         <td th:text="${bookInfo.publicationDate}"></td>
         <td th:text="${bookInfo.edition}"></td>
         <td th:if="${session.user != null}">
-        <form th:if="${session.user != null &amp;&amp; !bookInfo.available.isEmpty()}" th:action="@{/books/action}"
+        <form th:if="${session.user != null &amp;&amp; !bookInfo.available.isEmpty()}" th:action="@{/loans/loan}"
           action="#" method="post" role="form">
           	<input type="hidden" name="bookInfo" th:value="${bookInfo.Id}" />
           	<input type="hidden" name="user" th:value="${session.user.id}" />
-        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Loan book</button>
+        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-save"></span> Loan book</button>
     </form>
         </td>
     </tr>

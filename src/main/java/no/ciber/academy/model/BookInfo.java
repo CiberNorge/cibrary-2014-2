@@ -61,11 +61,11 @@ public class BookInfo implements Serializable {
     @Boost(value = 1.5f)
     private String description;
     
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn (name = "copies")
     private Set<Book> copies = new HashSet<Book>();
     
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Book> available = new HashSet<Book>();
 
     public BookInfo(){

@@ -39,5 +39,13 @@ public class Book {
         this.bookInfo = bookInfo;
     }
 
+	public long getId() {
+		return Id;
+	}
+
+	public void setId(long id) {
+		Id = id;
+	}
+
 
 }
