@@ -7,16 +7,7 @@ import org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.CacheRegi
 import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class BookInfo {
@@ -30,8 +21,12 @@ public class BookInfo {
     private String author;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate publicationDate;
+
+    @Column(length=2803)
     private String URL;
     private String ISBN;
+
+    @Column(length=2083)
     private String imageURL;
     private String edition;
     @Lob

@@ -1,4 +1,4 @@
-**.gradle/1.*/
+@**.gradle/1.*/
 *.gradle/
 **build/
 **target/
@@ -15,4 +15,5 @@
 **.settings
 *.h2.db
 *.lock.db
+*.trace.db
 /bin/
