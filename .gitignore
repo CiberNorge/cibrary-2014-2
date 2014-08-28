@@ -15,4 +15,9 @@
 **.settings
 *.h2.db
 *.lock.db
+*.trace.db
+_*
+segments.gen
+segments_2
+*.lock
 /bin/
