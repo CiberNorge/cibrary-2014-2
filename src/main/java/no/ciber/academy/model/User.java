@@ -1,9 +1,15 @@
 package no.ciber.academy.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.OneToMany;
 
 import org.springframework.context.annotation.Scope;
 
@@ -17,6 +23,9 @@ public class User {
 	private String password;
 	
 	private boolean isAdmin;
+	
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Book> loans = new HashSet<Book>();
 	
 	public User() { }
 	
@@ -48,5 +57,21 @@ public class User {
 
 	public void setIsAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
+	}
+
+	public Set<Book> getLoans() {
+		return loans;
+	}
+
+	public void setLoans(Set<Book> loans) {
+		this.loans = loans;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 }

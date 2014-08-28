@@ -16,10 +16,13 @@
 <img class="img-responsive img-thumbnail" th:src="${bookInfo.imageURL}" />
 <hr />
 <div class="text-center">
-<form th:if="${session.user != null}" th:action="@{/books/action}" th:object="${bookInfo}"
+<form th:if="${session.user != null}" th:action="@{/books/action}"
           action="#" method="post" role="form">
-            <button class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Loan book</button>
-            <button th:if="${session.user.isAdmin}" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span> Edit book</button>
+          	<input type="hidden" name="bookInfo" th:value="${bookInfo.Id}" />
+          	<input type="hidden" name="user" th:value="${session.user.id}" />
+            <button type="submit" name="loan" th:if="${!bookInfo.available.isEmpty()}" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Loan book</button>
+            <button type="submit" name="edit" th:if="${session.user.isAdmin}" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span> Edit book</button>
+            <button type="submit" name="add" th:if="${session.user.isAdmin}" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span> Add book</button>
     </form>
     </div>
 </div>
@@ -31,6 +34,7 @@
 <dt>ISBN</dt><dd th:text="${bookInfo.ISBN}"></dd>
 <dt>Edition</dt><dd th:text="${bookInfo.edition}"></dd>
 <dt>Total copies</dt><dd th:text="${bookInfo.copies.size()}"></dd>
+<dt>Available copies</dt><dd th:text="${bookInfo.available.size()}"></dd>
 <dt>Description</dt><dd></dd>
 </dl>
 <p th:text="${bookInfo.description}"></p>
