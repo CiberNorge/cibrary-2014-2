@@ -12,9 +12,9 @@
 
 
 <div layout:fragment="content">
-<table class="table table-striped">
+<table class="table">
 <tbody>
-    <tr th:each="book : ${listOfBooks}">
+    <tr class="active" th:each="book : ${listOfBooks}">
         <th class="col-xs-3"><a th:href="@{/books/info/} + ${book.bookInfo.Id}"><img class="img-responsive img-thumbnail" th:src="${book.bookInfo.imageURL}" /></a></th>
         <td class="col-xs-7">
 	        <dl class="dl-horizontal">
@@ -28,7 +28,7 @@
 	        <form th:action="@{/loans/return}"
 	          action="#" method="post" role="form">
 	          	<input type="hidden" id="book" name="book" th:value="${book.Id}" />
-		        <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-open"></span> Return book</button>
+		        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-open"></span> Return book</button>
 		    </form>
 		</td>
     </tr>

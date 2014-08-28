@@ -41,7 +41,7 @@ public class UserController {
 			return "redirect:/";
 		}
 		session.setAttribute("user", loggedUser);
-		return "redirect:/user/mybooks";
+		return "redirect:/";
 	}
 	
 	@RequestMapping("/signup")

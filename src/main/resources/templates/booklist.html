@@ -12,12 +12,12 @@
 
 
 <div layout:fragment="content">
-<table class="table table-striped">
+<table class="table">
 <thead>
-<tr><th>ISBN</th><th>Title</th><th>Author</th><th>Date of publication</th><th>Edition</th></tr>
+<tr class="active"><th>ISBN</th><th>Title</th><th>Author</th><th>Date of publication</th><th>Edition</th><th></th></tr>
 </thead>
 <tbody>
-    <tr th:each="bookInfo : ${listOfBooks}">
+    <tr class="active" th:each="bookInfo : ${listOfBooks}">
         <td th:text="${bookInfo.ISBN}"></td>
         <td><a th:href="@{/books/info/} + ${bookInfo.id}"><span th:text="${bookInfo.title}"></span></a></td>
         <td th:text="${bookInfo.author}"></td>
@@ -27,8 +27,9 @@
         <form th:if="${session.user != null &amp;&amp; !bookInfo.available.isEmpty()}" th:action="@{/loans/loan}"
           action="#" method="post" role="form">
           	<input type="hidden" name="bookInfo" th:value="${bookInfo.Id}" />
-        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-save"></span> Loan book</button>
-    </form>
+        <button type="submit" class="col-xs-12 btn btn-success"><span class="glyphicon glyphicon-save"></span> Loan book</button>
+	    </form>
+	    <button disabled="disabled" th:if="${session.user == null || bookInfo.available.isEmpty()}" class="btn btn-default col-xs-12"><span class="glyphicon glyphicon-save"></span> Book unavailable</button>
         </td>
     </tr>
 </tbody>
