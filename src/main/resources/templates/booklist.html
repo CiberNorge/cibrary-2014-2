@@ -14,15 +14,23 @@
 <div layout:fragment="content">
 <table class="table table-striped">
 <thead>
-<tr><th>ISBN</th><th>Title</th><th>Author</th><th>Date of publication</th><th></th></tr>
+<tr><th>ISBN</th><th>Title</th><th>Author</th><th>Date of publication</th><th>Edition</th></tr>
 </thead>
 <tbody>
     <tr th:each="bookInfo : ${listOfBooks}">
         <td th:text="${bookInfo.ISBN}"></td>
-        <td><a th:href="@{/books/info/} + ${bookInfo.Id}"><span th:text="${bookInfo.title}"></span></a></td>
+        <td><a th:href="@{/books/info/} + ${bookInfo.id}"><span th:text="${bookInfo.title}"></span></a></td>
         <td th:text="${bookInfo.author}"></td>
         <td th:text="${bookInfo.publicationDate}"></td>
-        <td th:if="${session.user != null &amp;&amp; !bookInfo.available.isEmpty()}"><button class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Loan book</button></td>
+        <td th:text="${bookInfo.edition}"></td>
+        <td th:if="${session.user != null}">
+        <form th:if="${session.user != null &amp;&amp; !bookInfo.available.isEmpty()}" th:action="@{/books/action}"
+          action="#" method="post" role="form">
+          	<input type="hidden" name="bookInfo" th:value="${bookInfo.Id}" />
+          	<input type="hidden" name="user" th:value="${session.user.id}" />
+        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Loan book</button>
+    </form>
+        </td>
     </tr>
 </tbody>
 </table>

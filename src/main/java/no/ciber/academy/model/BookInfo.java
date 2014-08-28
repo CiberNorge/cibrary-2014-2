@@ -23,7 +23,7 @@ public class BookInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long Id;
+    private long id;
 
 
     private String title;
@@ -113,11 +113,11 @@ public class BookInfo {
     }
 
 	public long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public Set<Book> getCopies() {
