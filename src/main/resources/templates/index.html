@@ -11,11 +11,14 @@
 	<div layout:fragment="content">
 		<div th:if="${listOfBooks != null}" class="row">
 	    <div class="col-lg-4 col-md-6 col-sm-12" th:each="bookInfo : ${listOfBooks}">
-	            <a th:href="@{/books/info/} + ${bookInfo.Id}"><img class="img-responsive img-thumbnail" th:src="${bookInfo.imageURL}" /><br />
-				<span th:text="${bookInfo.title}" /></a>
+		    <div class="thumbnail">
+	            <a th:href="@{/books/info/} + ${bookInfo.Id}"><img class="img-responsive img-thumbnail" th:src="${bookInfo.imageURL}" /></a>
+	            <div class="caption">
+					<a th:href="@{/books/info/} + ${bookInfo.Id}" th:text="${bookInfo.title}"></a>
+	            </div>
+            </div>
 	    </div>
-		</div>
-	
+	    </div>
     </div>
 
 </body>
