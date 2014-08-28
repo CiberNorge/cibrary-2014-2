@@ -16,7 +16,7 @@ public class RootController {
     @RequestMapping("/")
     public String index(Model model) {
     	model.addAttribute("user", new User());
-    	model.addAttribute("lostOfBooks", bookInfoRepository.findAll());
+    	model.addAttribute("listOfBooks", bookInfoRepository.findAll());
         return "index";
     }
 }

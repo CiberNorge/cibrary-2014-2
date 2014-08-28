@@ -38,6 +38,9 @@ html, body {
   height: 100%;
 }
 
+.navbar-brand {
+	font-size:20pt;
+}
 #wrap {
   min-height: 100%;
 }
