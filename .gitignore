@@ -20,4 +20,5 @@ _*
 segments.gen
 segments_2
 *.lock
+*segments*
 /bin/
