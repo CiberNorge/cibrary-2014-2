@@ -7,6 +7,7 @@ import org.hibernate.search.jpa.FullTextQuery;
 import org.hibernate.search.jpa.Search;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,6 +22,7 @@ public class SearchService {
 
 
     @SuppressWarnings("unchecked")
+    @Transactional
     public List<BookInfo> search(String searchParameter){
 
         QueryBuilder qb = getFullTextEntityManager().getSearchFactory().buildQueryBuilder().forEntity(BookInfo.class).get();
