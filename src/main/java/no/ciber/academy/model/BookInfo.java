@@ -40,6 +40,9 @@ public class BookInfo {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn (name = "copies")
     private Set<Book> copies = new HashSet<Book>();
+    
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Book> available = new HashSet<Book>();
 
     public BookInfo(){
 
@@ -123,6 +126,14 @@ public class BookInfo {
 
 	public void setCopies(Set<Book> copies) {
 		this.copies = copies;
+	}
+
+	public Set<Book> getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(Set<Book> available) {
+		this.available = available;
 	}
 
 

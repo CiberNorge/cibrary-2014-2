@@ -22,7 +22,7 @@
         <td><a th:href="@{/books/info/} + ${bookInfo.Id}"><span th:text="${bookInfo.title}"></span></a></td>
         <td th:text="${bookInfo.author}"></td>
         <td th:text="${bookInfo.publicationDate}"></td>
-        <td th:if="${session.user != null}"><button class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Loan book</button></td>
+        <td th:if="${session.user != null &amp;&amp; !bookInfo.available.isEmpty()}"><button class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Loan book</button></td>
     </tr>
 </tbody>
 </table>
