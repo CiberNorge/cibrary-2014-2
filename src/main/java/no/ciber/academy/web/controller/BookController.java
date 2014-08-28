@@ -19,6 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 @RequestMapping("/books")
 @Controller
 public class BookController {
@@ -37,14 +39,14 @@ public class BookController {
     }
     
     @RequestMapping("/action")
-    public String action(Model model, @ModelAttribute("bookInfo") BookInfo bookInfo, @ModelAttribute("user") User user, @RequestParam(required=false, value="loan") String loan, @RequestParam(required=false, value="add") String add, @RequestParam(required=false, value="edit") String edit, RedirectAttributes redirect) {
+    public String action(Model model, @ModelAttribute("bookInfo") BookInfo bookInfo, @RequestParam(required=false, value="loan") String loan, @RequestParam(required=false, value="add") String add, @RequestParam(required=false, value="edit") String edit, RedirectAttributes redirect, HttpSession session) {
     	if (add != null) return addCopy(model, bookInfo, redirect);
     	if (edit != null) {
     		model.addAttribute("bookInfo", bookInfo);
     		return "bookadd";
     	}
     	if (loan != null) {
-    		return loanController.loan(model, bookInfo, user, redirect);
+    		return loanController.loan(model, bookInfo, redirect, session);
     	}
     	redirect.addFlashAttribute("error", "An error occurred while dispatching (this should never happen!)");
     	return "redirect:/";
@@ -55,6 +57,7 @@ public class BookController {
     	Book newCopy = new Book();
     	bookInfo.getCopies().add(newCopy);
     	bookInfo.getAvailable().add(newCopy);
+    	newCopy.setBookInfo(bookInfo);
     	bookInfo = bookInfoRepository.save(bookInfo);
     	model.addAttribute("bookInfo", bookInfo);
         redirect.addFlashAttribute("message", "Another copy of your book has been added.");

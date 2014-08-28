@@ -24,7 +24,7 @@ public class User {
 	
 	private boolean isAdmin;
 	
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Book> loans = new HashSet<Book>();
 	
 	public User() { }

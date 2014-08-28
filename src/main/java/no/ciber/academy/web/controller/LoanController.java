@@ -2,6 +2,7 @@ package no.ciber.academy.web.controller;
 
 import java.util.Iterator;
 
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import no.ciber.academy.model.Book;
@@ -13,9 +14,12 @@ import no.ciber.academy.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
+@RequestMapping(value = "/loans", method= RequestMethod.POST)
 public class LoanController {
     @Autowired
     private BookInfoRepository bookInfoRepository;
@@ -24,19 +28,32 @@ public class LoanController {
 	private UserRepository userRepository;
 
 	@Transactional
-	public String loan(Model model, BookInfo bookInfo, User user, RedirectAttributes redirect) {
+	@RequestMapping("/loan")
+	public String loan(Model model, BookInfo bookInfo, RedirectAttributes redirect, HttpSession session) {
 		try {
 			Iterator<Book> iterator = bookInfo.getAvailable().iterator();
 			Book book = iterator.next();
 			iterator.remove();
+			User user = (User) session.getAttribute("user");
 			user.getLoans().add(book);
 			bookInfo = bookInfoRepository.save(bookInfo);
 			user = userRepository.save(user);
-		} catch (Exception _) {
+			session.setAttribute("user", user);
+		} catch (Exception e) {
 			redirect.addFlashAttribute("error", "Book disappeared while loaning.");
 	    	return "redirect:/books/info/" + bookInfo.getId();
 		}
 		redirect.addFlashAttribute("message", "You successfully got the book.");
-    	return "redirect:/books/info/" + bookInfo.getId(); // FIXME: go to user book list instead?
+    	return "redirect:/user/mybooks";
+	}
+	
+	@Transactional
+	@RequestMapping("/return")
+	public String returnBook(Model model, Book book, RedirectAttributes redirect, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		user.getLoans().remove(book);
+		book.getBookInfo().getAvailable().add(book);
+		redirect.addFlashAttribute("message", "You successfully returned the book.");
+    	return "redirect:/user/mybooks";
 	}
 }
