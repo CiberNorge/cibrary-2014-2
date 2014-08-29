@@ -7,7 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 @Repository
+@Transactional
 public interface BookInfoRepository extends JpaRepository<BookInfo, Long> {
     List<BookInfo> findByTitle(String title);
     //BookInfo findByISBN(String ISBN);

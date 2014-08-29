@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 @Repository
+@Transactional
 public interface BookRepository extends JpaRepository<Book, Long> {
 }

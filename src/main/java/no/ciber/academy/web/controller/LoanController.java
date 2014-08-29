@@ -3,7 +3,6 @@ package no.ciber.academy.web.controller;
 import java.util.Iterator;
 
 import javax.servlet.http.HttpSession;
-import javax.transaction.Transactional;
 
 import no.ciber.academy.model.Book;
 import no.ciber.academy.model.BookInfo;
@@ -28,7 +27,6 @@ public class LoanController {
 	@Autowired
 	private UserRepository userRepository;
 
-	@Transactional
 	@RequestMapping("/loan")
 	public String loan(Model model, @ModelAttribute("bookInfo") BookInfo bookInfo, RedirectAttributes redirect, HttpSession session) {
 		try {
@@ -48,13 +46,15 @@ public class LoanController {
     	return "redirect:/user/mybooks";
 	}
 	
-	@Transactional
 	@RequestMapping("/return")
 	public String returnBook(Model model, Book book, RedirectAttributes redirect, HttpSession session) {
 		try {
 			User user = (User) session.getAttribute("user");
 			user.getLoans().remove(book);
 			book.getBookInfo().getAvailable().add(book);
+			bookInfoRepository.save(book.getBookInfo());
+			user = userRepository.save(user);
+			session.setAttribute("user", user);
 		} catch (Exception e) {
 			redirect.addFlashAttribute("error", "Book disappeared while returning.");
 			return "redirect:/user/mybooks";

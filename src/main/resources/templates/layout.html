@@ -13,6 +13,7 @@
     
 </head>
 <body>
+	<div id="contentwrap">
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -33,13 +34,13 @@
         <div th:if="${session.user != null}">
                <ul class="nav navbar-nav">
                     <li th:if="${session.user.isAdmin}"><a href="form.html" th:href="@{/books/addbook}"><span class="glyphicon glyphicon-plus"></span> Register book</a></li>
-                    <li class="dropdown">
+                    <!-- <li class="dropdown">
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-th-list"></span> All books <span class="caret"></span></a>
-			          <ul class="dropdown-menu" role="menu">
-	                    <li><a href="form.html" th:href="@{/books/list}"><span class="glyphicon glyphicon-list-alt"></span> List all</a></li>
-	                    <li><a href="form.html" th:href="@{/books/list}"><span class="glyphicon glyphicon-th-large"></span> Categories</a></li>
+			          <ul class="dropdown-menu" role="menu">-->
+	                    <li><a href="form.html" th:href="@{/books/list}"><span class="glyphicon glyphicon-list-alt"></span> List all books</a></li>
+	                 <!-- <li><a href="form.html" th:href="@{/books/list}"><span class="glyphicon glyphicon-th-large"></span> Categories</a></li>
                     </ul>
-                    </li>
+                    </li>-->
                     
                 </ul>
         </div>
@@ -116,5 +117,6 @@
     <footer id="footer">
         <span>Copyright &copy; 2014 <a href="http://www.ciber.com" target="_blank">Ciber</a>. All Rights Reserved</span>
     </footer>
+    </div>
 </body>
 </html>

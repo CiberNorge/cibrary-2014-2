@@ -20,7 +20,6 @@
 <form th:if="${session.user != null}" th:action="@{/books/action}"
           action="#" method="post" role="form">
           	<input type="hidden" name="bookInfo" th:value="${bookInfo.Id}" />
-          	<input type="hidden" name="user" th:value="${session.user.id}" />
             <button type="submit" name="loan" th:if="${!bookInfo.available.isEmpty()}" class="col-xs-12 btn btn-success"><span class="glyphicon glyphicon-save"></span> Loan book</button>
             <button type="submit" name="edit" th:if="${session.user.isAdmin}" class="col-xs-12 btn btn-info"><span class="glyphicon glyphicon-pencil"></span> Edit book</button>
             <button type="submit" name="add" th:if="${session.user.isAdmin}" class="col-xs-12 btn btn-info"><span class="glyphicon glyphicon-plus"></span> Add another copy</button>
