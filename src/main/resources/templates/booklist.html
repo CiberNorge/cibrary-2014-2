@@ -14,10 +14,11 @@
 <div layout:fragment="content">
 <table class="table">
 <thead>
-<tr class="active"><th>Title</th><th>Author</th><th>Available copies</th><th>Edition</th><th>Picture</th><th></th></tr>
+<tr class="active"><th></th><th>Title</th><th>Author</th><th>Available copies</th><th>Edition</th><th></th></tr>
 </thead>
 <tbody>
     <tr class="active" th:each="bookInfo : ${listOfBooks}">
+        <td class="col-xs-1"> <img class="img-responsive img-thumbnail" th:src="${bookInfo.imageURL}"/></td>
         <td><a th:href="@{/books/info/} + ${bookInfo.id}"><span th:text="${bookInfo.title}"></span></a></td>
         <td th:text="${bookInfo.author}"></td>
         <td th:text="${bookInfo.available.size()}"></td>
