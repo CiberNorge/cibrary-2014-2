@@ -1,5 +1,9 @@
 package no.ciber.academy.web.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import no.ciber.academy.model.BookInfo;
 import no.ciber.academy.model.User;
 import no.ciber.academy.model.repository.BookInfoRepository;
 
@@ -16,7 +20,13 @@ public class RootController {
     @RequestMapping("/")
     public String index(Model model) {
     	model.addAttribute("user", new User());
-    	model.addAttribute("listOfBooks", bookInfoRepository.findAll());
+    	List<BookInfo> books = new ArrayList<BookInfo>();
+    	int i = 0;
+    	for (BookInfo book : bookInfoRepository.findAll()) {
+    		books.add(book);
+    		if (i++ > 6) break;
+    	}
+    	model.addAttribute("listOfBooks", books);
         return "index";
     }
 }

@@ -29,8 +29,8 @@
           	<input type="hidden" name="bookInfo" th:value="${bookInfo.Id}" />
         <button type="submit" class="col-xs-12 btn btn-success"><span class="glyphicon glyphicon-save"></span> Loan book</button>
 	    </form>
-	    <button disabled="disabled" th:if="${session.user != null &amp;&amp; bookInfo.available.isEmpty()}" class="btn btn-default col-xs-12"><span class="glyphicon glyphicon-save"></span> Book unavailable</button>
-	    <button disabled="disabled" th:if="${session.user == null}" class="btn btn-default col-xs-12"><span class="glyphicon glyphicon-save"></span> Log in to loan</button>
+	    <button disabled="disabled" th:if="${bookInfo.available.isEmpty()}" class="btn btn-default col-xs-12"><span class="glyphicon glyphicon-save"></span> Book unavailable</button>
+	    <button disabled="disabled" th:if="${session.user == null &amp;&amp; !bookInfo.available.isEmpty()}" class="btn btn-default col-xs-12"><span class="glyphicon glyphicon-save"></span> Log in to loan</button>
         </td>
     </tr>
 </tbody>
