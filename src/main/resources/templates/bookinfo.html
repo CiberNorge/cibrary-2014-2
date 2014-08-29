@@ -16,9 +16,9 @@
 <img class="img-responsive img-thumbnail" th:src="${bookInfo.imageURL}" />
 <hr />
 <div class="text-center">
-<button disabled="disabled" th:if="${session.user == null || bookInfo.available.isEmpty()}" class="btn btn-default col-xs-12"><span class="glyphicon glyphicon-save"></span> Book unavailable</button>
 <form th:if="${session.user != null}" th:action="@{/books/action}"
           action="#" method="post" role="form">
+			<button disabled="disabled" th:if="${bookInfo.available.isEmpty()}" class="btn btn-default col-xs-12"><span class="glyphicon glyphicon-save"></span> Book unavailable</button>
           	<input type="hidden" name="bookInfo" th:value="${bookInfo.Id}" />
             <button type="submit" name="loan" th:if="${!bookInfo.available.isEmpty()}" class="col-xs-12 btn btn-success"><span class="glyphicon glyphicon-save"></span> Loan book</button>
             <button type="submit" name="edit" th:if="${session.user.isAdmin}" class="col-xs-12 btn btn-info"><span class="glyphicon glyphicon-pencil"></span> Edit book</button>
@@ -38,7 +38,7 @@
 <dt>Description</dt><dd></dd>
 </dl>
 <p th:text="${bookInfo.description}"></p>
-<p><a th:href="${bookInfo.URL}">More information</a></p>
+<p th:if="${bookInfo.URL.length() > 0}"><a th:href="${bookInfo.URL}">More information</a></p>
 </div>
 </div>
 </div>
