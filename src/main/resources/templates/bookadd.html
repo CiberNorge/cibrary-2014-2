@@ -16,41 +16,44 @@
 
 			<div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" th:field="*{title}" />
+            <input type="text" class="form-control" th:field="*{title}" th:errorclass="field-error" />
+            <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error-text" />
             </div>
             
             <div class="form-group">
-            <label for="title">Author</label>
-            <input type="text" class="form-control" th:field="*{author}" />
+            <label for="author">Author</label>
+            <input type="text" required="" class="form-control" th:field="*{author}" th:errorclass="field-error" />
+                <p th:if="${#fields.hasErrors('author')}" th:errors="*{author}" class="error-text" />
             </div>
             
             <div class="form-group">
-            <label for="title">Publication date</label>
+            <label for="publicationDate">Publication date</label>
             <input type="date" class="form-control" th:field="*{publicationDate}" />
             </div>
             
             <div class="form-group">
-            <label for="title">URL</label>
+            <label for="url">URL</label>
             <input type="text" class="form-control" th:field="*{URL}" />
             </div>
             
             <div class="form-group">
-            <label for="title">ISBN</label>
+            <label for="isbn">ISBN</label>
             <input type="number" class="form-control" th:field="*{ISBN}" />
             </div>
             
             <div class="form-group">
-            <label for="title">URL for image</label>
-            <input type="url" class="form-control" th:field="*{imageURL}" />
+            <label for="imageURL">URL for image</label>
+            <input type="url" required="" class="form-control" th:field="*{imageURL}" />
+                <p th:if="${#fields.hasErrors('imageURL')}" th:errors="*{imageURL}" class="error-text" />
             </div>
             
             <div class="form-group">
-            <label for="title">Edition</label>
+            <label for="edition">Edition</label>
             <input type="text" class="form-control" th:field="*{edition}" />
             </div>
             
             <div class="form-group">
-            <label for="title">Description</label>
+            <label for="description">Description</label>
             <textarea class="form-control" th:field="*{description}" rows="5"></textarea>
             </div>
             

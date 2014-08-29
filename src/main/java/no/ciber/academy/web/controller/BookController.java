@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @RequestMapping("/books")
 @Controller
@@ -71,7 +72,9 @@ public class BookController {
     }
 
     @RequestMapping("/save")
-    public String save(BookInfo newBook, Model bookModel, RedirectAttributes redirect) {
+    public String save(@Valid BookInfo newBook, BindingResult result, Model bookModel, RedirectAttributes redirect) {
+        if(result.hasErrors())
+            return "bookadd";
         newBook = bookInfoRepository.save(newBook);
         bookModel.addAttribute("bookInfo", newBook);
         addCopy(bookModel, newBook, redirect);

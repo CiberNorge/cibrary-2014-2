@@ -8,6 +8,7 @@ import org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.CacheRegi
 import org.hibernate.search.annotations.Boost;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -34,11 +35,12 @@ public class BookInfo implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-
+    @NotEmpty(message = "You may not add books without a title. Please add a title")
     @Field
     @Boost(value = 1.5f)
     private String title;
 
+    @NotEmpty(message = "You may not add a book without an author. Please add an author")
     @Field
     private String author;
 
@@ -52,6 +54,7 @@ public class BookInfo implements Serializable {
     @Boost(value = 1.5f)
     private String ISBN;
 
+    @NotEmpty(message = "You may not add a book without a imageURL. Please add a imageURL   ")
     @Column(length=2083)
     private String imageURL;
     private String edition;
