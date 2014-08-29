@@ -52,6 +52,9 @@ public class LoanController {
 			User user = (User) session.getAttribute("user");
 			user.getLoans().remove(book);
 			book.getBookInfo().getAvailable().add(book);
+			bookInfoRepository.save(book.getBookInfo());
+			user = userRepository.save(user);
+			session.setAttribute("user", user);
 		} catch (Exception e) {
 			redirect.addFlashAttribute("error", "Book disappeared while returning.");
 			return "redirect:/user/mybooks";

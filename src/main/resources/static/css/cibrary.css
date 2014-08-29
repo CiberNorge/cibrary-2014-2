@@ -34,7 +34,7 @@ input.field-error, textarea.field-error {
 	opacity: 0.3;
 }
 
-html, body {
+html, body, #contentwrap {
   height: 100%;
 }
 
