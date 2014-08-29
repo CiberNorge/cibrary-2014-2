@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import javax.transaction.Transactional;
 
 import no.ciber.academy.model.Book;
 import no.ciber.academy.model.BookInfo;
@@ -45,7 +44,6 @@ public class UserController {
 	}
 	
 	@RequestMapping("/signup")
-	@Transactional
 	public String signup(HttpSession session, Model model, @ModelAttribute("user") User user, @RequestParam("repeat") String repeat, RedirectAttributes redirect) {
 		if (!user.getPassword().equals(repeat)) {
 			model.addAttribute("error", "The entered passwords do not match!");
@@ -77,7 +75,6 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/mybooks", method=RequestMethod.GET)
-	@Transactional
 	public String mybooks(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		model.addAttribute("listOfBooks", user.getLoans());
